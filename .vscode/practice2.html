@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit and Search</title>
+</head>
+<body>
+
+    <h1>Edit and Search on Google</h1>
+
+    <label for="searchInput">Enter a word:</label>
+    <input type="text" id="searchInput" placeholder="Type a word...">
+
+    <button onclick="searchOnGoogle()">Search on Google</button>
+
+    <script>
+        function searchOnGoogle() {
+            // Get the value entered by the user
+            var searchWord = document.getElementById('searchInput').value;
+
+            // Check if the input is not empty
+            if (searchWord.trim() !== '') {
+                // Construct the Google search URL
+                var googleSearchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(searchWord);
+
+                // Open a new tab or window with the Google search
+                window.open(googleSearchUrl, '_blank');
+            } else {
+                // Alert the user if the input is empty
+                alert('Please enter a word before searching on Google.');
+            }
+        }
+    </script>
+
+</body>
+</html>

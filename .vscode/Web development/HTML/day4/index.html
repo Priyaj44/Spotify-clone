@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitTrek App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      color: #333;
+      transition: background 0.3s ease;
+    }
+    nav {
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #0056b3;
+    }
+    .container {
+      padding: 2rem;
+      animation: fadeIn 0.5s ease;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .hidden {
+      display: none;
+    }
+    .active-link {
+      color: #0056b3;
+      border-bottom: 2px solid #0056b3;
+      padding-bottom: 2px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .like-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #eee;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .like-btn.liked {
+      background: #ff4081;
+      color: white;
+    }
+    .accordion {
+      cursor: pointer;
+      font-weight: bold;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f1f1f1;
+      transition: background 0.3s ease;
+    }
+    .accordion:hover {
+      background: #e2e2e2;
+    }
+    .panel {
+      padding: 1rem;
+      display: none;
+      overflow-x: auto;
+      background: white;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .login-container {
+      max-width: 300px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .login-container input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav a {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="auth">
+    <div class="login-container">
+      <h3>Login</h3>
+      <input type="text" id="username" placeholder="Enter username" />
+      <input type="password" id="password" placeholder="Enter password" />
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <div id="mainApp" style="display:none">
+    <nav>
+      <span><strong>FitTrek</strong></span>
+      <div>
+        <a class="nav-link active-link" onclick="showSection('gym', this)">Gym Zone</a>
+        <a class="nav-link" onclick="showSection('trekking', this)">Trekking Zone</a>
+        <a class="nav-link" onclick="showSection('community', this)">Community</a>
+        <a class="nav-link" onclick="showSection('profile', this)">Profile</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <section id="gym">
+        <div class="card">
+          <div class="accordion" onclick="togglePanel(this)">
+            🏋️ Workout Plans 
+            <button class="like-btn" onclick="event.stopPropagation(); toggleLike(this)">Like</button>
+          </div>
+          <div class="panel">
+            <h3>🗓️ Weekly Schedule - BSF Fitness Centre</h3>
+            <table>
+              <thead>
+                <tr><th>Service</th><th>Time</th><th>Days</th></tr>
+              </thead>
+              <tbody>
+                <tr><td style="color:green;">CrossFit</td><td>06:00–10:00am<br>04:00–10:30pm</td><td>Monday to Saturday</td></tr>
+                <tr><td style="color:orange;">Boxing/Kick Boxing</td><td>07:30–09:00pm</td><td>Tue, Thu & Sat</td></tr>
+                <tr><td style="color:teal;">Yoga</td><td>06:00–07:00am</td><td>Tue, Thu & Sat</td></tr>
+                <tr><td style="color:purple;">Zumba</td><td>07:30–08:30pm</td><td>Mon, Wed & Fri</td></tr>
+                <tr><td style="color:gray;">Diet Consultation</td><td>06:00–07:00pm</td><td>Everyday</td></tr>
+                <tr><td style="color:#00c3ff;">Dance</td><td>06:30–07:30pm</td><td>Mon, Wed & Fri</td></tr>
+                <tr><td style="color:#ff8c00;">Chess</td><td>10:30–12:30pm<br>07:30–08:30pm</td><td>Sat & Sun</td></tr>
+                <tr><td style="color:green;">Carrom</td><td>10:30–12:30pm</td><td>Sunday only</td></tr>
+                <tr><td style="color:crimson;">Karate</td><td>07:00–08:30pm</td><td>Tue, Fri & Sat</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">🎥 Exercise Videos <button class="like-btn" onclick="toggleLike(this)">Like</button></div>
+        <div class="card">🧑‍🏫 Trainer Booking <button class="like-btn" onclick="toggleLike(this)">Like</button></div>
+        <div class="card">📊 Performance Tracker <button class="like-btn" onclick="toggleLike(this)">Like</button></div>
+      </section>
+
+      <section id="trekking" class="hidden">
+        <div class="accordion" onclick="togglePanel(this)">🗺️ Trail Explorer</div>
+        <div class="panel"><p>Find and save trails based on location, terrain, and length.</p></div>
+        <div class="accordion" onclick="togglePanel(this)">🥾 Difficulty Levels</div>
+        <div class="panel"><p>Select beginner to advanced treks with safety ratings.</p></div>
+        <div class="accordion" onclick="togglePanel(this)">🌤️ Weather & Safety</div>
+        <div class="panel"><p>Check live weather forecasts and safety tips for treks.</p></div>
+        <div class="accordion" onclick="togglePanel(this)">📶 Trek Logger</div>
+        <div class="panel"><p>Log your completed treks with GPS tracking and stats.</p></div>
+      </section>
+
+      <section id="community" class="hidden">
+        <div class="card">👥 User Stories <button class="like-btn" onclick="toggleLike(this)">Like</button></div>
+        <div class="card">📸 Photos & Comments <button class="like-btn" onclick="toggleLike(this)">Like</button></div>
+      </section>
+
+      <section id="profile" class="hidden">
+        <div class="card">🧑 User Information</div>
+        <div class="card">🏆 Achievements</div>
+        <div class="card">📈 Activity Stats</div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (username && password) {
+        localStorage.setItem('user', username);
+        document.getElementById('auth').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+      } else {
+        alert('Please enter credentials.');
+      }
+    }
+
+    function showSection(id, link) {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      sections.forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+      navLinks.forEach(l => l.classList.remove('active-link'));
+      link.classList.add('active-link');
+    }
+
+    function toggleLike(btn) {
+      btn.classList.toggle('liked');
+      btn.textContent = btn.classList.contains('liked') ? 'Liked' : 'Like';
+    }
+
+    function togglePanel(header) {
+      const panel = header.nextElementSibling;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem('user')) {
+        document.getElementById('auth').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+      }
+    };
+  </script>
+</body>
+</html>

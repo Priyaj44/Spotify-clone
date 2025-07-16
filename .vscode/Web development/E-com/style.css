@@ -1,0 +1,233 @@
+body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+
+    /* Topbar / Header */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #232f3e;
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #f0c14b;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #37475a;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cart-button {
+      background: #f0c14b;
+      border: 1px solid #a88734;
+      color: #111;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .cart-button:hover {
+      background: #ddb347;
+    }
+
+    #cartCount {
+      background: #111;
+      color: #f0c14b;
+      padding: 2px 6px;
+      margin-left: 6px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* Discover Section */
+    .discover {
+      background-color: #ffe5b4;
+      padding: 4rem 2rem;
+      text-align: center;
+      border-radius: 12px;
+      margin: 2rem auto;
+      max-width: 1200px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .discover h2 {
+      font-size: 2.2rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .discover p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .product-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .product-controls input,
+    .product-controls select {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: 2px solid #ffae6d;
+      border-radius: 6px;
+    }
+
+    /* Product Grid */
+    .product-grid,
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      text-align: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product-info h3,
+    .product-card h2 {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .product-info p,
+    .product-card p {
+      color: #ff5e00;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+
+    .product-info button,
+    .product-card button {
+      background-color: #ff9f45;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .product-info button:hover,
+    .product-card button:hover {
+      background-color: #ff7a00;
+    }
+
+    /* Modal */
+    .cart-modal {
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    footer nav a {
+      color: #aaa;
+      margin: 0 0.5rem;
+    }
+
+    /* Mobile Menu */
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: #232f3e;
+        padding: 1rem;
+        border-radius: 8px;
+        width: 200px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }

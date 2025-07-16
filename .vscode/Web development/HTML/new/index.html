@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FitTrek App</title>
+    <link rel="stylesheet" href="style.css" >
+</head>
+
+<body>
+    <div id="auth">
+        <div class="login-container">
+            <h3>Login</h3>
+            <input type="text" id="username" placeholder="Enter username" />
+            <input type="password" id="password" placeholder="Enter password" />
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <div id="mainApp" style="display:none">
+        <nav>
+            <span><strong>FitTrek</strong></span>
+            <div>
+                <a class="nav-link active-link" onclick="showSection('gym', this)">Gym Zone</a>
+                <a class="nav-link" onclick="showSection('trekking', this)">Trekking Zone</a>
+                <a class="nav-link" onclick="showSection('community', this)">Community</a>
+                <a class="nav-link" onclick="showSection('profile', this)">Profile</a>
+            </div>
+        </nav>
+
+        <div class="container">
+            <section id="gym">
+                <div class="card">
+                    <div class="accordion" onclick="togglePanel(this)">
+                        🏋️ Workout Plans
+                        <button class="like-btn" onclick="event.stopPropagation(); toggleLike(this)">Like</button>
+                    </div>
+                    <div class="panel">
+                        <h3>🗓️ Weekly Schedule - BSF Fitness Centre</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Time</th>
+                                    <th>Days</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="color:green;">CrossFit</td>
+                                    <td>06:00–10:00am<br>04:00–10:30pm</td>
+                                    <td>Monday to Saturday</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:orange;">Boxing/Kick Boxing</td>
+                                    <td>07:30–09:00pm</td>
+                                    <td>Tue, Thu & Sat</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:teal;">Yoga</td>
+                                    <td>06:00–07:00am</td>
+                                    <td>Tue, Thu & Sat</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:purple;">Zumba</td>
+                                    <td>07:30–08:30pm</td>
+                                    <td>Mon, Wed & Fri</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:gray;">Diet Consultation</td>
+                                    <td>06:00–07:00pm</td>
+                                    <td>Everyday</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:#00c3ff;">Dance</td>
+                                    <td>06:30–07:30pm</td>
+                                    <td>Mon, Wed & Fri</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:#ff8c00;">Chess</td>
+                                    <td>10:30–12:30pm<br>07:30–08:30pm</td>
+                                    <td>Sat & Sun</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:green;">Carrom</td>
+                                    <td>10:30–12:30pm</td>
+                                    <td>Sunday only</td>
+                                </tr>
+                                <tr>
+                                    <td style="color:crimson;">Karate</td>
+                                    <td>07:00–08:30pm</td>
+                                    <td>Tue, Fri & Sat</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">🎥 Exercise Videos <button class="like-btn" onclick="toggleLike(this)">Like</button>
+                </div>
+                <div class="card">🧑‍🏫 Trainer Booking <button class="like-btn"
+                        onclick="toggleLike(this)">Like</button></div>
+                <div class="card">📊 Performance Tracker <button class="like-btn"
+                        onclick="toggleLike(this)">Like</button></div>
+            </section>
+
+            <section id="trekking" class="hidden">
+                <div class="accordion" onclick="togglePanel(this)">🗺️ Trail Explorer</div>
+                <div class="panel">
+                    <p>Find and save trails based on location, terrain, and length.</p>
+                </div>
+                <div class="accordion" onclick="togglePanel(this)">🥾 Difficulty Levels</div>
+                <div class="panel">
+                    <p>Select beginner to advanced treks with safety ratings.</p>
+                </div>
+                <div class="accordion" onclick="togglePanel(this)">🌤️ Weather & Safety</div>
+                <div class="panel">
+                    <p>Check live weather forecasts and safety tips for treks.</p>
+                </div>
+                <div class="accordion" onclick="togglePanel(this)">📶 Trek Logger</div>
+                <div class="panel">
+                    <p>Log your completed treks with GPS tracking and stats.</p>
+                </div>
+            </section>
+
+            <section id="community" class="hidden">
+                <div class="card">👥 User Stories <button class="like-btn" onclick="toggleLike(this)">Like</button>
+                </div>
+                <div class="card">📸 Photos & Comments <button class="like-btn" onclick="toggleLike(this)">Like</button>
+                </div>
+            </section>
+
+            <section id="profile" class="hidden">
+                <div class="card">🧑 User Information</div>
+                <div class="card">🏆 Achievements</div>
+                <div class="card">📈 Activity Stats</div>
+            </section>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
